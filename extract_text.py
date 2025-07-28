@@ -24,7 +24,7 @@ convert_pdf_to_images("/home/sovan/harsh/class12_phy_ch8/ch8class12phy.pdf", out
 # %%
 from pdf2image import convert_from_path
 import openai
-openai.api_key = "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"
+openai.api_key = "sk-proj-wzNvN7"
 
 import base64
 
