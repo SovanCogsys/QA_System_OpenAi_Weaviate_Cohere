@@ -26,7 +26,7 @@ from langchain.retrievers.multi_query import MultiQueryRetriever
 import torch
 import os
 model_id_1 = "meta-llama/Meta-Llama-3-8B-Instruct"
-hf_token = "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"
+hf_token = "hf_BXPU"
 
 
 #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
