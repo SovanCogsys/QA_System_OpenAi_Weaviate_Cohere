@@ -8,9 +8,9 @@ from langchain.retrievers import ContextualCompressionRetriever
 from langchain.retrievers.document_compressors import CohereRerank
 from langchain_core.output_parsers import StrOutputParser
 WEAVIATE_URL = "https://yf1xh.c0.asia-southeast1.gcp.weaviate.cloud"
-WEAVIATE_API_KEY = "bENJZ3l1bTExNWZTcGhaY19"
+WEAVIATE_API_KEY = "bENJZ3l1bTE"
 OPENAI_API_KEY = "sk-proj-wzNvN72IiS"
-COHERE_API_KEY = "AQrl2dSsLLH"
+COHERE_API_KEY = "AQrl2dS"
 
 client = weaviate.Client(
     url=WEAVIATE_URL,
