@@ -146,3 +146,55 @@ for doc in filtered_docs:
     source = doc.metadata.get('chapter', 'Unknown')
     snippet = doc.page_content.strip().replace("\n", " ")
     print("{:<6} {:} {}".format(page, source, snippet + "..."))
+# Define the prompt template
+evaluation_prompt = PromptTemplate(
+    input_variables=["question", "llm_answer", "human_answer"],
+    template="""
+
+You're an experienced and supportive teacher in [Physics / Chemistry / Biology], reviewing a student's answer. You also have the reference answer from the textbook to compare.
+Please evaluate the student’s response based on the following three criteria. Use a friendly, personal tone as if you're writing directly to the student.
+For each criterion:
+#Give a score out of 5
+#Write 1–2 lines of feedback in a warm, encouraging tone (use “you” to address the student directly)
+At the end, include:
+# A Summary Comment (your overall impression of the answer)
+# Suggestions for Improvement (specific tips to help the student do better next time)
+### Format for your evaluation:
+# Evaluation
+1.Technical Accuracy: [Score]/5
+Feedback: [Your short, supportive comment to the student]
+2.Conceptual Understanding: [Score]/5
+Feedback: [Does the student really understand the concept? Mention clearly]
+3.Clarity of Explanation: [Score]/5
+Feedback: [Was the explanation easy to follow? Mention strengths or how to improve]
+##Summary Comment
+[Brief, balanced overall feedback: what went well + where to improve]
+##Suggestions for Improvement
+[Tip 1: e.g., Revisit key definitions or formulas]
+[Tip 2: e.g., Try to explain ideas in your own words more clearly]
+[Tip 3: e.g., Compare your answer to the textbook to spot missing points]
+
+Question:
+{question}
+
+Your Answer:
+{human_answer}
+
+Textbook Reference Answer:
+{llm_answer}
+"""
+)
+
+# Load LLM (temperature 0 for deterministic grading)
+llm = ChatOpenAI(temperature=0, model="gpt-4",openai_api_key=OPENAI_API_KEY)
+
+
+Eval_chain = evaluation_prompt| llm | StrOutputParser()
+
+Eval_response = Eval_chain.invoke({
+    "question": query,
+    "llm_answer": response,
+    "human_answer": user_response
+})
+
+print(Eval_response)
