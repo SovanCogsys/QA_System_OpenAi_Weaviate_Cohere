@@ -4,9 +4,9 @@ import os
 import openai
 import re
 import spacy
-WEAVIATE_URL = "https://yf1xhun0ttywarwcufiqow.c0.asia-southeast1.gcp.weaviate.cloud"
-WEAVIATE_API_KEY = "bENJZ3l1bTExNWZTcGhaY19NT0l0a0g3QnA0UnM1NGFON2w1UUwzcWZRVjIySHdDZm53VnBveFhwN0I0PV92MjAw"
-OPENAI_API_KEY ="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"
+WEAVIATE_URL = "https://yf1.c0.asia-southeast1.gcp.weaviate.cloud"
+WEAVIATE_API_KEY = "bENJZ3l1"
+OPENAI_API_KEY ="sk-proj"
 os.environ["WEAVIATE_URL"] = WEAVIATE_URL
 os.environ["WEAVIATE_API_KEY"] = WEAVIATE_API_KEY
 os.environ["OPENAI_APIKEY"] = OPENAI_API_KEY
